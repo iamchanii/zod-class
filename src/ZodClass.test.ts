@@ -49,3 +49,7 @@ it('should parse unknown data', () => {
   );
   expect(parsedUser);
 });
+
+it('should access static schema', () => {
+  expect(User.schema).toBeInstanceOf(z.ZodObject);
+});
