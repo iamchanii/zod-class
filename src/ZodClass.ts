@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
-export type ZodClass<
+export interface ZodClass<
   Shape extends z.ZodRawShape,
   Value = z.infer<z.ZodObject<Shape>>
-> = Value & {
-  parse(data: unknown): InstanceType<ZodClass<Shape>>;
+> {
+  parse<T extends InstanceType<this> = InstanceType<this>>(data: unknown): T;
   new (data: Value): Value;
-};
+}
 
 export function ZodClass<Shape extends z.ZodRawShape>(
   shape: Shape

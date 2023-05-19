@@ -26,7 +26,9 @@ it('should use class methods', () => {
   const kid = new User({ name: 'John', age: 12 });
 
   expect(kid.isAdult).toBe(false);
-  expect(kid.sayHi()).toMatchInlineSnapshot('"Hi, my name is John and I\'m 12 years old"');
+  expect(kid.sayHi()).toMatchInlineSnapshot(
+    '"Hi, my name is John and I\'m 12 years old"'
+  );
 });
 
 it('should check instance type', () => {
@@ -37,10 +39,13 @@ it('should check instance type', () => {
 });
 
 it('should parse unknown data', () => {
-  const parsedUser = User.parse({ name: 'Kane', age: 33 });
+  const parsedUser: User = User.parse({ name: 'Kane', age: 33 });
 
   expect(parsedUser).toBeInstanceOf(User);
   expect(parsedUser.name).toBe('Kane');
   expect(parsedUser.age).toBe(33);
+  expect(parsedUser.sayHi()).toMatchInlineSnapshot(
+    '"Hi, my name is Kane and I\'m 33 years old"'
+  );
   expect(parsedUser);
 });
