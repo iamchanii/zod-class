@@ -1,6 +1,9 @@
 {
   "name": "@imchhh/zod-class",
-  "private": true,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "version": "0.0.1",
   "type": "module",
   "files": [
