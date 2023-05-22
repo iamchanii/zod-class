@@ -13,11 +13,12 @@ export function ZodClass<
   Shape extends z.ZodRawShape,
   Value = z.infer<z.ZodObject<Shape>>
 >(shape: Shape): ZodClass<Shape> {
+  const schema = z.object(shape);
   return class {
-    static schema = z.object(shape);
+    static schema = schema;
 
     static parse(data: unknown) {
-      return new this(this.schema.parse(data) as Value);
+      return new this(schema.parse(data) as Value);
     }
 
     constructor(data: Value) {
