@@ -23,6 +23,10 @@ export function ZodClass<
 
     constructor(data: Value) {
       Object.assign(this, data);
+
+      (this.constructor as ZodClass<Shape>).parse = (
+        this.constructor as ZodClass<Shape>
+      ).parse.bind(this.constructor);
     }
   } as never;
 }

@@ -1,4 +1,4 @@
-import { it, expect } from 'vitest';
+import { it, expect, vi } from 'vitest';
 import { ZodClass } from './ZodClass';
 import { z } from 'zod';
 
@@ -47,9 +47,27 @@ it('should parse unknown data', () => {
   expect(parsedUser.sayHi()).toMatchInlineSnapshot(
     '"Hi, my name is Kane and I\'m 33 years old"'
   );
-  expect(parsedUser);
 });
 
 it('should access static schema', () => {
   expect(User.schema).toBeInstanceOf(z.ZodObject);
+});
+
+it('should parse successfully using static method without this scope problem', async () => {
+  vi.useFakeTimers();
+
+  const getFakeFetchResponse = () =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ name: 'John', age: 42 });
+      }, 1000);
+    });
+
+  const response = getFakeFetchResponse().then(User.parse);
+  await vi.runAllTimersAsync();
+
+  const parsedUser = await response;
+  expect(parsedUser).toBeInstanceOf(User);
+  expect(parsedUser.name).toBe('John');
+  expect(parsedUser.age).toBe(42);
 });
