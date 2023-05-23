@@ -71,3 +71,18 @@ it('should parse successfully using static method without this scope problem', a
   expect(parsedUser.name).toBe('John');
   expect(parsedUser.age).toBe(42);
 });
+
+it('should parse successfully using static method without this scope problem - 2', () => {
+  const users = [
+    { name: 'John', age: 42 },
+    { name: 'Jane', age: 33 },
+  ].map(User.parse);
+
+  expect(users[0]).toBeInstanceOf(User);
+  expect(users[0].name).toBe('John');
+  expect(users[0].age).toBe(42);
+
+  expect(users[1]).toBeInstanceOf(User);
+  expect(users[1].name).toBe('Jane');
+  expect(users[1].age).toBe(33);
+});
