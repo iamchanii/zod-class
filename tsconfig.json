@@ -20,7 +20,7 @@
 
     "declaration": true,
     "declarationDir": "dist",
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": true
   },
   "include": ["src"]
 }

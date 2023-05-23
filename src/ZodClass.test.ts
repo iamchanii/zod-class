@@ -1,6 +1,6 @@
-import { it, expect, vi } from 'vitest';
-import { ZodClass } from './ZodClass';
+import { expect, it, vi } from 'vitest';
 import { z } from 'zod';
+import { ZodClass } from './ZodClass';
 
 class User extends ZodClass({
   name: z.string(),
@@ -27,7 +27,7 @@ it('should use class methods', () => {
 
   expect(kid.isAdult).toBe(false);
   expect(kid.sayHi()).toMatchInlineSnapshot(
-    '"Hi, my name is John and I\'m 12 years old"'
+    '"Hi, my name is John and I\'m 12 years old"',
   );
 });
 
@@ -45,7 +45,7 @@ it('should parse unknown data', () => {
   expect(parsedUser.name).toBe('Kane');
   expect(parsedUser.age).toBe(33);
   expect(parsedUser.sayHi()).toMatchInlineSnapshot(
-    '"Hi, my name is Kane and I\'m 33 years old"'
+    '"Hi, my name is Kane and I\'m 33 years old"',
   );
 });
 

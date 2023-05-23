@@ -16,8 +16,8 @@ pnpm add @imchhh/zod-class
 ## Example
 
 ```ts
-import { z } from 'zod';
 import { ZodClass } from '@imchhh/zod-class';
+import { z } from 'zod';
 
 declare const unknownInput: unknown;
 
